@@ -1,0 +1,71 @@
+<div class="form-group">
+    <div class="input-group">
+        <div class="input-group-addon"><i class="fa fa-search"></i></div>
+        <input type="text" class="form-control" placeholder="Search in all fields" ng-model="searchVal.$">
+    </div>
+</div>
+<div class="text-right">
+    <button class="btn btn-primary" ng-click="resetFilters()">Reset All</button>
+</div>
+<br>
+<div class="table-responsive">
+    <table class="table table-bordered table-condensed">
+        <thead>
+        <tr>
+            <th>
+                <input type="text" class="form-control" placeholder="Filter by title" ng-model="searchVal.title">
+                <br>
+                <a href="#" ng-click="sortBy('title')">
+                    Title
+                    <span ng-show="sortProp === 'title' && !sortReverse" class="fa fa-caret-down"></span>
+                    <span ng-show="sortProp === 'title' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th>
+                <input type="text" class="form-control" placeholder="Filter by image" ng-model="searchVal.image">
+                <br>
+                <a href="#" ng-click="sortBy('image')">
+                    Image
+                    <span ng-show="sortProp === 'image' && !sortReverse" class="fa fa-caret-down"></span>
+                    <span ng-show="sortProp === 'image' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th>
+                <input type="text" class="form-control" placeholder="Filter by rating" ng-model="searchVal.rating">
+                <br>
+                <a href="#" ng-click="sortBy('rating')">
+                    Rating
+                    <span ng-show="sortProp === 'rating' && !sortReverse" class="fa fa-caret-down"></span>
+                    <span ng-show="sortProp === 'rating' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th>
+                <input type="text" class="form-control" placeholder="Filter by price" ng-model="searchVal.price">
+                <br>
+                <a href="#" ng-click="sortBy('price')">
+                    Price
+                    <span ng-show="sortProp === 'price' && !sortReverse" class="fa fa-caret-down"></span>
+                    <span ng-show="sortProp === 'price' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+        </tr>
+        </thead>
+        <tbody ng-controller="ModalCtrl">
+        <tr ng-repeat="item in menu | orderBy : sortProp : sortReverse | filter : searchVal : strict"
+            ng-click="openModal(item)">
+            <td>
+                {{item.title}}
+            </td>
+            <td>
+                {{item.image}}
+            </td>
+            <td>
+                {{item.rating}}
+            </td>
+            <td>
+                {{item.price}}
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
