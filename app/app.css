@@ -1,0 +1,6 @@
+/* app css stylesheet */
+body{
+  padding: 2rem 1rem;
+}
+
+.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
